@@ -1,8 +1,6 @@
 #include <iostream>
-
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-
 #include <imgui_impl_opengl3.h>
 #include <imgui_impl_glfw.h>
 
@@ -13,15 +11,14 @@ int main()
 
     glfwInit();
 
-    GLFWwindow* window = glfwCreateWindow(800, 600, "LearnOpenGL", NULL, NULL);
-    if (window == NULL)
+    GLFWwindow* window = glfwCreateWindow(800, 600, "simpleImGui", nullptr, nullptr);
+    if (nullptr == window)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
         return -1;
     }
     glfwMakeContextCurrent(window);
-
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
         std::cout << "Failed to initialize GLAD" << std::endl;
@@ -38,6 +35,7 @@ int main()
     // Setup Dear ImGui style
     ImGui::StyleColorsDark();
 
+    int display_w, display_h;
     while (!glfwWindowShouldClose(window))
     {
         glfwPollEvents();
@@ -57,7 +55,6 @@ int main()
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-        int display_w, display_h;
         glfwGetFramebufferSize(window, &display_w, &display_h);
         glViewport(0, 0, display_w, display_h);
         glfwSwapBuffers(window);
@@ -68,5 +65,5 @@ int main()
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
 
-    return 0;
+    return 0x0;
 }
